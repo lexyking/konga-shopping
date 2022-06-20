@@ -1,12 +1,15 @@
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from "@mui/material"
 import { AddShoppingCart } from "@mui/icons-material"
 
+import useStyles from './styles';
+
 const Product = ({ product }) => {
+  const classes = useStyles();
   return (
-    <Card>
-      <CardMedia title={product.name} image=''/>
+    <Card className={classes.root}>
+      <CardMedia title={product.name} image='' className={classes.media}/>
       <CardContent>
-        <div>
+        <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
             {product.name}
           </Typography>
@@ -18,8 +21,10 @@ const Product = ({ product }) => {
           {product.description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="Add to card" children={AddShoppingCart}/>
+      <CardActions disableSpacing className={classes.cardActions}>
+        <IconButton aria-label="Add to card">
+          <AddShoppingCart />
+        </IconButton>
       </CardActions>
     </Card>
   )
