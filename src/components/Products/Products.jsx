@@ -2,8 +2,8 @@ import { Grid } from '@mui/material'
 import Product from './Product/Product'
 
 const products = [
-  {id: 1, name: 'Macbook', description: 'this is an Apple product'},
-  {id: 2, name: 'i-phone', description: 'this is another Apple product'}
+  {id: 1, name: 'Macbook', description: 'this is an Apple product', price: '£2400'},
+  {id: 2, name: 'i-phone', description: 'this is another Apple product', price: '£1299'}
 ]
 
 const Products = () => {
