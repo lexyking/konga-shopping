@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material'
 import Product from './Product/Product'
+import useStyles from './styles'
 
 const products = [
   {id: 1, name: 'Macbook', description: 'this is an Apple product', price: '£2400'},
