@@ -7,7 +7,7 @@ const Product = ({ product }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardMedia title={product.name} image='' className={classes.media}/>
+      <CardMedia title={product.name} image='https://source.unsplash.com/random' className={classes.media}/>
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
