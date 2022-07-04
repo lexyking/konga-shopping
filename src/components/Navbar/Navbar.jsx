@@ -9,6 +9,7 @@ import logo from '../../assets/commerce.png';
 const NavBar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
+  console.log({ location })
   return (
     <>
        <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -17,7 +18,7 @@ const NavBar = ({ totalItems }) => {
             <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Commerce.js
           </Typography>
           <div className={classes.grow} />
-          {location.pathname === '/' && (
+          {location && location?.pathname === '/' && (
           <div className={classes.button}>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">
