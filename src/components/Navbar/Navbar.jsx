@@ -9,11 +9,11 @@ import logo from '../../assets/commerce.png';
 const NavBar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
-  const history = useHistory()
-  const match = useRouteMatch()
-  const params = useParams()
-  console.log({ location }, { history },
-    { match }, { params })
+  // const history = useHistory()
+  // const match = useRouteMatch()
+  // const params = useParams()
+  // console.log({ location }, { history },
+  //   { match }, { params })
   return (
     <>
        <AppBar position="fixed" className={classes.appBar} color="inherit">
