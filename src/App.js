@@ -1,7 +1,9 @@
-import Products from './components/Products/Products'
-import NavBar from './components/Navbar/Navbar';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router } from 'react-router-dom';
+import {
+  Products,
+  NavBar
+} from './components'
 
 const App = () => {
   const theme = createTheme({})
@@ -9,7 +11,6 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <NavBar />
-      <div>Hello from the App</div>
         <Products />
       </ThemeProvider>
     </Router>
