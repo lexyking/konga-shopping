@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from "@mui/material"
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams, useRouteMatch, useHistory } from 'react-router-dom';
 import { ShoppingCart } from "@mui/icons-material";
 
 import useStyles from './styles.js'
@@ -9,7 +9,11 @@ import logo from '../../assets/commerce.png';
 const NavBar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
-  console.log({ location })
+  const history = useHistory()
+  const match = useRouteMatch()
+  const params = useParams()
+  console.log({ location }, { history },
+    { match }, { params })
   return (
     <>
        <AppBar position="fixed" className={classes.appBar} color="inherit">
