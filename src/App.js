@@ -1,7 +1,7 @@
 import Products from './components/Products/Products'
 import NavBar from './components/Navbar/Navbar';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
   const theme = createTheme({})
