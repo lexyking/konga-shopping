@@ -1,8 +1,6 @@
 import { makeStyles, fade } from "@mui/styles";
-import lexy from '@emotion/styled';
 
 const drawerWidth = 0;
-console.log({ lexy })
 
 export default makeStyles((theme) => ({
   appBar: {

@@ -7,19 +7,19 @@ const Product = ({ product }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardMedia title={product.name} image='https://source.unsplash.com/random' className={classes.media}/>
+      <CardMedia title={product.name} image={product.image.url} className={classes.media}/>
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
             {product.name}
           </Typography>
           <Typography variant="h5">
-            {product.price}
+            {product.price.formatted_with_symbol}
           </Typography>
         </div>
-        <Typography variant="body2" color='textSecondary'>
-          {product.description}
-        </Typography>
+        <Typography
+          dangerouslySetInnerHTML={{ __html: product.description }}
+          variant="body2" color='textSecondary' />
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="Add to card">
