@@ -15,7 +15,6 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
-  // console.log(commerce.products())
 
   const fetchProducts = async () => {
     const {data} = await commerce.products.list();
@@ -28,6 +27,7 @@ const App = () => {
 
   const handleAddToCart = async(productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity)
+    console.log({ item })
     setCart(item.cart)
   }
 
@@ -72,7 +72,6 @@ const App = () => {
     fetchCart();
   }, [])
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-  // console.log({ products })
   return (
     <Router>
       <div style={{ display: 'flex' }}>
