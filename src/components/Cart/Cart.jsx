@@ -6,32 +6,53 @@ import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
 
 const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+  console.log({ cart }, cart.line_items?.length)
   const classes = useStyles();
 
   const handleEmptyCart = () => onEmptyCart();
 
-  const renderEmptyCart = () => (
-    <Typography variant="subtitle1">You have no items in your shopping cart,
-      <Link className={classes.link} to="/">start adding some</Link>!
-    </Typography>
-  );
+  const renderEmptyCart = () => {
+    return (
+      <Typography variant="subtitle1">You have no items in your shopping cart,
+        <Link className={classes.link} to="/">start adding some</Link>!
+      </Typography>
+    )
+  }
 
-  if (!cart.line_items?.length) return 'Loading';
+  // if (cart.line_items && !cart.line_items.length) return 'Loading';
 
   const renderCart = () => (
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
           <Grid item xs={12} sm={4} key={lineItem.id}>
-            <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
+            <CartItem
+              item={lineItem}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
+            />
           </Grid>
         ))}
       </Grid>
       <div className={classes.cardDetails}>
         <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
         <div>
-          <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty cart</Button>
-          <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
+          <Button
+            className={classes.emptyButton}
+            size="large" type="button"
+            variant="contained"
+            color="secondary"
+            onClick={() => handleEmptyCart()}>
+              Empty cart
+          </Button>
+          <Button
+            className={classes.checkoutButton}
+            component={Link} to="/checkout"
+            size="large" type="button"
+            variant="contained"
+            color="primary">
+              Checkout
+          </Button>
         </div>
       </div>
     </>
@@ -41,7 +62,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     <Container>
       <div className={classes.toolbar} />
       <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
-      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
+      { cart.line_items.length === 0 ? renderEmptyCart() : renderCart() }
     </Container>
   );
 };

@@ -27,7 +27,7 @@ const App = () => {
 
   const handleAddToCart = async(productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity)
-    console.log({ item })
+    // console.log({ item })
     setCart(item.cart)
   }
 
@@ -83,7 +83,10 @@ const App = () => {
               <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty/>
             </Route>
             <Route exact path="/cart">
-              <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
+              <Cart cart={cart}
+                onUpdateCartQty={handleUpdateCartQty}
+                onRemoveFromCart={handleRemoveFromCart}
+                onEmptyCart={handleEmptyCart} />
             </Route>
           </Switch>
         </ThemeProvider>
