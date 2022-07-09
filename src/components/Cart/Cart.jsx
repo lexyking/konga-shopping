@@ -16,7 +16,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     </Typography>
   );
 
-  if (!cart.line_items) return 'Loading';
+  if (!cart.line_items?.length) return 'Loading';
 
   const renderCart = () => (
     <>
