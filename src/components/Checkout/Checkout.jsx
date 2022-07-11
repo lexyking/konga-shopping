@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@mui/material';
 import useStyles from './styles';
+import AddressForm from './AddressForm';
+import PaymentForm from './PaymentForm';
 
 const steps = ['Shipping address', 'Payment details'];
 
 const Checkout = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
+
+  const Form = () => (activeStep === 0
+    ? <AddressForm />
+    : <PaymentForm />
+  )
+
+  const Confirmation = () => (
+    <>
+      Confirmation
+    </>
+  );
+
   return (
     <>
     <CssBaseline />
@@ -21,7 +35,7 @@ const Checkout = () => {
             </Step>
           ))}
         </Stepper>
-        {/* {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />} */}
+        {activeStep === steps.length ? <Confirmation /> : <Form />}
       </Paper>
     </main>
   </>
