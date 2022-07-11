@@ -4,11 +4,12 @@ import useStyles from './styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 
+
 const steps = ['Shipping address', 'Payment details'];
 
 const Checkout = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
 
   const Form = () => (activeStep === 0
     ? <AddressForm />
