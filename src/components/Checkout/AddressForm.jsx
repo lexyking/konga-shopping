@@ -3,9 +3,9 @@ import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@mui/mat
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import FormInput from './FormInput'
+import { commerce } from '../lib/commerce'
 
-
-const AddressForm = () => {
+const AddressForm = ({ checkoutToken }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState('');
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -13,6 +13,40 @@ const AddressForm = () => {
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState('');
   const methods = useForm();
+
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
+
+    setShippingCountries(countries);
+    setShippingCountry(Object.keys(countries)[0]);
+  };
+
+  const fetchSubdivisions = async (countryCode) => {
+    const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+
+    setShippingSubdivisions(subdivisions);
+    setShippingSubdivision(Object.keys(subdivisions)[0]);
+  };
+
+  const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => {
+    const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region: stateProvince });
+
+    setShippingOptions(options);
+    setShippingOption(options[0].id);
+  };
+
+  useEffect(() => {
+    fetchShippingCountries(checkoutToken?.id);
+  }, []);
+
+  useEffect(() => {
+    if (shippingCountry) fetchSubdivisions(shippingCountry);
+  }, [shippingCountry]);
+
+  useEffect(() => {
+    if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
+  }, [shippingSubdivision]);
+
   return (
     <>
       <Typography variant="h6" gutterBottom>Shipping address</Typography>
@@ -25,7 +59,7 @@ const AddressForm = () => {
             <FormInput required name="email" label="Email" />
             <FormInput required name="city" label="City" />
             <FormInput required name="zip" label="Zip / Postal code" />
-            {/* <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
                 {Object.entries(shippingCountries).map(([code, name]) => ({ id: code, label: name })).map((item) => (
@@ -34,7 +68,7 @@ const AddressForm = () => {
                   </MenuItem>
                 ))}
               </Select>
-            </Grid> */}
+            </Grid>
             {/* <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
               <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
