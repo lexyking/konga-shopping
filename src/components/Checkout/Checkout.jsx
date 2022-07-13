@@ -5,7 +5,7 @@ import useStyles from './styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 
-
+import { commerce } from '../lib/commerce'
 const steps = ['Shipping address', 'Payment details'];
 
 const Checkout = ({ cart }) => {
@@ -16,7 +16,7 @@ const Checkout = ({ cart }) => {
   const history = useHistory()
 
   const Form = () => (activeStep === 0
-    ? <AddressForm />
+    ? <AddressForm checkoutToken={checkoutToken}/>
     : <PaymentForm />
   )
 
@@ -34,7 +34,7 @@ const Checkout = ({ cart }) => {
 
       generateToken();
     }
-  }, [cart])
+  }, [cart, activeStep, history])
 
   const Confirmation = () => (
     <>
