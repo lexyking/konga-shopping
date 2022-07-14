@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import FormInput from './FormInput'
 import { commerce } from '../lib/commerce'
 
-const AddressForm = ({ checkoutToken }) => {
+const AddressForm = ({ checkoutToken, test }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState('');
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
