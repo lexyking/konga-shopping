@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import FormInput from './FormInput'
 import { commerce } from '../lib/commerce'
 
-const AddressForm = ({ checkoutToken }) => {
+const AddressForm = ({ checkoutToken, test }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState('');
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -37,7 +37,7 @@ const AddressForm = ({ checkoutToken }) => {
 
   useEffect(() => {
     fetchShippingCountries(checkoutToken?.id);
-  }, []);
+  }, [checkoutToken]);
 
   useEffect(() => {
     if (shippingCountry) fetchSubdivisions(shippingCountry);
@@ -45,7 +45,7 @@ const AddressForm = ({ checkoutToken }) => {
 
   useEffect(() => {
     if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
-  }, [shippingSubdivision]);
+  }, [shippingSubdivision, shippingCountry, checkoutToken]);
 
   return (
     <>
@@ -69,7 +69,7 @@ const AddressForm = ({ checkoutToken }) => {
                 ))}
               </Select>
             </Grid>
-            {/* <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
               <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
                 {Object.entries(shippingSubdivisions).map(([code, name]) => ({ id: code, label: name })).map((item) => (
@@ -78,8 +78,8 @@ const AddressForm = ({ checkoutToken }) => {
                   </MenuItem>
                 ))}
               </Select>
-            </Grid> */}
-            {/* <Grid item xs={12} sm={6}>
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Options</InputLabel>
               <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
                 {shippingOptions.map((sO) => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` })).map((item) => (
@@ -88,7 +88,7 @@ const AddressForm = ({ checkoutToken }) => {
                   </MenuItem>
                 ))}
               </Select>
-            </Grid> */}
+            </Grid>
           </Grid>
           <br />
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
