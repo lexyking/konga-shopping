@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react'
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
-  Products,
   NavBar,
   Cart,
   Checkout
 } from './components'
+import Products from './pages/products/Products';
 import { commerce } from './components/lib/commerce'
+import {
+  fetchProducts,
+  fetchCart
+} from './components/helpers/util';
 
 const App = () => {
   const theme = createTheme({})
@@ -16,15 +20,6 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const fetchProducts = async () => {
-    const {data} = await commerce.products.list();
-    setProducts(data)
-  }
-
-  const fetchCart = async() => {
-    setCart(await commerce.cart.retrieve());
-  }
 
   const handleAddToCart = async(productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity)
@@ -68,8 +63,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
-    fetchCart();
+    fetchProducts(setProducts);
+    fetchCart(setCart);
   }, [])
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
