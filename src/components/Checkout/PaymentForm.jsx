@@ -1,7 +1,10 @@
+
+import Review from './Review';
+
 const PaymentForm = () => {
   return (
     <div>
-      payment form
+      <Review />
     </div>
   )
 }
