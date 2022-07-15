@@ -1,11 +1,6 @@
 import { Grid } from '@mui/material'
-import Product from './Product/Product'
+import Product from '../../components/Product/Product';
 import useStyles from './styles'
-
-// const products = [
-//   {id: 1, name: 'Macbook', description: 'this is an Apple product', price: '£2400'},
-//   {id: 2, name: 'i-phone', description: 'this is another Apple product', price: '£1299'}
-// ]
 
 const Products = ({ products, onAddToCart }) => {
   const classes = useStyles()
