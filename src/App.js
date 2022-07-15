@@ -28,7 +28,6 @@ const App = () => {
 
   const handleAddToCart = async(productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity)
-    // console.log({ item })
     setCart(item.cart)
   }
 
@@ -72,7 +71,9 @@ const App = () => {
     fetchProducts();
     fetchCart();
   }, [])
+
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+  
   return (
     <Router>
       <div style={{ display: 'flex' }}>
