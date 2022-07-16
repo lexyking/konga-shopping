@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, createContext } from 'react'
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
@@ -8,7 +8,7 @@ import {
   Checkout
 } from './components'
 import { commerce } from './components/lib/commerce'
-import { appContext } from './context/appContext'
+// import { appContext } from './context/appContext'
 
 const App = () => {
   const theme = createTheme({})
@@ -18,9 +18,8 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const appValue = useContext(appContext());
-
-  console.log({ appValue });
+  // const AppContext = createContext(appContext);
+  // const UserContext = createContext();
 
   const fetchProducts = async () => {
     const {data} = await commerce.products.list();
@@ -81,6 +80,8 @@ const App = () => {
   
   return (
     <Router>
+      {/* <AppContext.Provider value={'hello'}> */}
+
       <div style={{ display: 'flex' }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -101,6 +102,8 @@ const App = () => {
           </Switch>
         </ThemeProvider>
       </div>
+      {/* </AppContext.Provider> */}
+
     </Router>
   )
 }
