@@ -1,14 +1,13 @@
+import { useContext } from 'react'
+import { appContext } from '../../context/appContext'
 import { Grid } from '@mui/material'
 import Product from './Product/Product'
 import useStyles from './styles'
 
-// const products = [
-//   {id: 1, name: 'Macbook', description: 'this is an Apple product', price: '£2400'},
-//   {id: 2, name: 'i-phone', description: 'this is another Apple product', price: '£1299'}
-// ]
-
 const Products = ({ products, onAddToCart }) => {
   const classes = useStyles()
+  // const value = useContext(appContext());
+  // console.log({ value })
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
@@ -25,4 +24,4 @@ const Products = ({ products, onAddToCart }) => {
   )
 }
 
-export default Products
+export default Products;
