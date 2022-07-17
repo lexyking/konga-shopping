@@ -1,8 +1,7 @@
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from "@mui/material"
-import { Link, useLocation, useParams, useRouteMatch, useHistory } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Badge, Typography} from "@mui/material"
+import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart } from "@mui/icons-material";
-import { useContext, useState } from "react";
-import AppContext from "../context/AppContext.js";
+import { useContext } from "react";
 import NavBarContext from '../context/NavBarContext'
 
 import useStyles from './styles.js'
@@ -13,11 +12,6 @@ const NavBar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
   const result = useContext(NavBarContext)
-  // const history = useHistory()
-  // const match = useRouteMatch()
-  // const params = useParams()
-  // console.log({ location }, { history },
-  //   { match }, { params })
   console.log({ result })
   return (
     <>

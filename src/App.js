@@ -8,7 +8,7 @@ import {
   Checkout
 } from './components'
 import { commerce } from './components/lib/commerce'
-import { ContextProvider } from './components/context/AppContext';
+import { ContextProvider } from './components/context';
 
 const App = () => {
   const theme = createTheme({})

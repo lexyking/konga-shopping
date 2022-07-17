@@ -1,10 +1,8 @@
-import { useEffect, useState, createContext, useContext } from 'react'
-import { NavBarContextProvider } from './NavBarContext'
-import { combineProvider } from './util'
+import { createContext } from 'react'
 
 const AppContext = createContext({})
 
-const AppContextProvider = ({ children }) => {
+export const AppContextProvider = ({ children }) => {
   return (
     <AppContext.Provider value={{
       hello: 'i am the context'
@@ -13,12 +11,5 @@ const AppContextProvider = ({ children }) => {
     </AppContext.Provider>
   )
 }
-
-const providers = [
-  NavBarContextProvider,
-  AppContextProvider
-]
-
-export const ContextProvider = combineProvider(...providers)
 
 export default AppContext;
