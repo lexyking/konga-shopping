@@ -7,6 +7,7 @@ This project is an online e-commerce shop. Build with reactjs and on top of the 
 `Frontend`
 
 - ReactJs
+  * Context API
 - Material UI
 
 `Backend`
