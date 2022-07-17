@@ -1,13 +1,14 @@
 import { useContext } from 'react'
-import { appContext } from '../../context/appContext'
 import { Grid } from '@mui/material'
 import Product from './Product/Product'
 import useStyles from './styles'
+import AppContext from '../context/AppContext'
 
 const Products = ({ products, onAddToCart }) => {
   const classes = useStyles()
-  // const value = useContext(appContext());
-  // console.log({ value })
+  const result = useContext(AppContext)
+
+  console.log({ result })
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
