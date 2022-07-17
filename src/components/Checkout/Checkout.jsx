@@ -17,14 +17,14 @@ const Checkout = () => {
   const classes = useStyles();
   const history = useHistory()
 
-  const { cart, handleCaptureCheckout, order, errorMessage } = useContext(AppContext)
+  const { cart, order, errorMessage } = useContext(AppContext)
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const Form = () => (activeStep === 0
     ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
-    : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} onCaptureCheckout={handleCaptureCheckout} />
+    : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} />
   )
 
   useEffect(() => {

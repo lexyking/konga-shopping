@@ -1,25 +1,30 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import {
   Products,
   NavBar,
   Cart,
   Checkout
 } from './components'
-import { AppContextProvider } from './components/context/AppContext';
+import { ContextProvider } from './components/context';
 
 const App = () => {
+  const theme = createTheme({})
 
   return (
     <Router>
       <div style={{ display: 'flex' }}>
-      <AppContextProvider>
+      <ContextProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <NavBar/>
           <Switch>
             <Route exact path="/"><Products /></Route>
             <Route exact path="/cart"><Cart /></Route>
             <Route exact path="/checkout"><Checkout /></Route>
           </Switch>
-      </AppContextProvider>
+        </ThemeProvider>
+      </ContextProvider>
       </div>
     </Router>
   )

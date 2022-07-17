@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from "@mui/material"
 import { AddShoppingCart } from "@mui/icons-material"
+import { handleAddToCart } from "../../context/util";
+import AppContext from "../../context/AppContext";
 
 import useStyles from './styles';
 
-const Product = ({ product, onAddToCart }) => {
+const Product = ({ product }) => {
   const classes = useStyles();
+  const {setCart} = useContext(AppContext)
+
   return (
     <Card className={classes.root}>
       <CardMedia title={product.name} image={product.image.url} className={classes.media}/>
@@ -22,7 +27,7 @@ const Product = ({ product, onAddToCart }) => {
           variant="body2" color='textSecondary' />
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label="Add to card" onClick={() => onAddToCart(product.id, 1)}>
+        <IconButton aria-label="Add to card" onClick={() => handleAddToCart(product.id, 1, setCart)}>
           <AddShoppingCart />
         </IconButton>
       </CardActions>

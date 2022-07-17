@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
 import AppContext from '../context/AppContext';
+import { handleEmptyCart } from '../context/util';
 
 const Cart = () => {
   const {
     cart,
-    handleUpdateCartQty,
-    handleRemoveFromCart,
-    handleEmptyCart
+    setCart
   } = useContext(AppContext)
   const classes = useStyles();
 
@@ -28,25 +27,23 @@ const Cart = () => {
   const renderCart = () => (
     <>
       <Grid container spacing={3}>
-        {cart.line_items.map((lineItem) => (
+        {cart?.line_items?.map((lineItem) => (
           <Grid item xs={12} sm={4} key={lineItem.id}>
             <CartItem
               item={lineItem}
-              onUpdateCartQty={handleUpdateCartQty}
-              onRemoveFromCart={handleRemoveFromCart}
             />
           </Grid>
         ))}
       </Grid>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+        <Typography variant="h4">Subtotal: {cart?.subtotal?.formatted_with_symbol}</Typography>
         <div>
           <Button
             className={classes.emptyButton}
             size="large" type="button"
             variant="contained"
             color="secondary"
-            onClick={() => handleEmptyCart()}>
+            onClick={() => handleEmptyCart(setCart)}>
               Empty cart
           </Button>
           <Button
@@ -66,7 +63,7 @@ const Cart = () => {
     <Container>
       <div className={classes.toolbar} />
       <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
-      { cart.line_items.length === 0 ? renderEmptyCart() : renderCart() }
+      { cart?.line_items?.length === 0 ? renderEmptyCart() : renderCart() }
     </Container>
   );
 };
