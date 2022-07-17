@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@mui/material';
 import useStyles from './styles';
@@ -6,21 +6,25 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 
 import { commerce } from '../lib/commerce'
+import AppContext from '../context/AppContext';
+
 const steps = ['Shipping address', 'Payment details'];
 
-const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
+const Checkout = () => {
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
   const classes = useStyles();
   const history = useHistory()
 
+  const { cart, handleCaptureCheckout, order, errorMessage } = useContext(AppContext)
+
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const Form = () => (activeStep === 0
     ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
-    : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} onCaptureCheckout={onCaptureCheckout} />
+    : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} onCaptureCheckout={handleCaptureCheckout} />
   )
 
   useEffect(() => {
@@ -61,10 +65,10 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     </div>
   ));
 
-  if (error) {
+  if (errorMessage) {
     Confirmation = () => (
       <>
-        <Typography variant="h5">Error: {error}</Typography>
+        <Typography variant="h5">Error: {errorMessage}</Typography>
         <br />
         <Button component={Link} variant="outlined" type="button" to="/">Back to home</Button>
       </>

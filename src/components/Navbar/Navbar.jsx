@@ -1,19 +1,17 @@
+import { useContext } from "react";
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from "@mui/material"
-import { Link, useLocation, useParams, useRouteMatch, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart } from "@mui/icons-material";
 
 import useStyles from './styles.js'
 import logo from '../../assets/commerce.png';
+import AppContext from "../context/AppContext";
 
 
-const NavBar = ({ totalItems }) => {
+const NavBar = () => {
   const classes = useStyles();
   const location = useLocation();
-  // const history = useHistory()
-  // const match = useRouteMatch()
-  // const params = useParams()
-  // console.log({ location }, { history },
-  //   { match }, { params })
+  const { totalItems, handleDrawerToggle } = useContext(AppContext);
   return (
     <>
        <AppBar position="fixed" className={classes.appBar} color="inherit">

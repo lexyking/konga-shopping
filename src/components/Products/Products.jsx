@@ -4,11 +4,10 @@ import Product from './Product/Product'
 import useStyles from './styles'
 import AppContext from '../context/AppContext'
 
-const Products = ({ products, onAddToCart }) => {
+const Products = () => {
   const classes = useStyles()
-  const result = useContext(AppContext)
+  const { products, handleAddToCart } = useContext(AppContext)
 
-  console.log({ result })
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
@@ -16,7 +15,7 @@ const Products = ({ products, onAddToCart }) => {
         {
           products.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-            <Product product={product} onAddToCart={onAddToCart}/>
+            <Product product={product} onAddToCart={handleAddToCart}/>
             </Grid>
           ))
         }
