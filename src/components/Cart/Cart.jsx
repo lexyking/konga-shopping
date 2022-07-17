@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Typography, Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
+import AppContext from '../context/AppContext';
 
-const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
-  console.log({ cart }, cart.line_items?.length)
+const Cart = () => {
+  const {
+    cart,
+    handleUpdateCartQty,
+    handleRemoveFromCart,
+    handleEmptyCart
+  } = useContext(AppContext)
   const classes = useStyles();
-
-  const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => {
     return (
@@ -28,8 +32,8 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
           <Grid item xs={12} sm={4} key={lineItem.id}>
             <CartItem
               item={lineItem}
-              onUpdateCartQty={onUpdateCartQty}
-              onRemoveFromCart={onRemoveFromCart}
+              onUpdateCartQty={handleUpdateCartQty}
+              onRemoveFromCart={handleRemoveFromCart}
             />
           </Grid>
         ))}

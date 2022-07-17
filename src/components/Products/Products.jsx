@@ -1,13 +1,13 @@
 import { useContext } from 'react'
-import { appContext } from '../../context/appContext'
 import { Grid } from '@mui/material'
 import Product from './Product/Product'
 import useStyles from './styles'
+import AppContext from '../context/AppContext'
 
-const Products = ({ products, onAddToCart }) => {
+const Products = () => {
   const classes = useStyles()
-  // const value = useContext(appContext());
-  // console.log({ value })
+  const { products, handleAddToCart } = useContext(AppContext)
+
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
@@ -15,7 +15,7 @@ const Products = ({ products, onAddToCart }) => {
         {
           products.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-            <Product product={product} onAddToCart={onAddToCart}/>
+            <Product product={product} onAddToCart={handleAddToCart}/>
             </Grid>
           ))
         }
