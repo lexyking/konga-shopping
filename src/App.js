@@ -8,6 +8,7 @@ import {
   Checkout
 } from './components'
 import { commerce } from './components/lib/commerce'
+import { ContextProvider } from './components/context/AppContext';
 
 const App = () => {
   const theme = createTheme({})
@@ -77,6 +78,7 @@ const App = () => {
   return (
     <Router>
       <div style={{ display: 'flex' }}>
+        <ContextProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <NavBar cart={cart} totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle}/>
@@ -95,6 +97,7 @@ const App = () => {
             </Route>
           </Switch>
         </ThemeProvider>
+        </ContextProvider>
       </div>
     </Router>
   )

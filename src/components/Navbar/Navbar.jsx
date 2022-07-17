@@ -1,6 +1,9 @@
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from "@mui/material"
 import { Link, useLocation, useParams, useRouteMatch, useHistory } from 'react-router-dom';
 import { ShoppingCart } from "@mui/icons-material";
+import { useContext, useState } from "react";
+import AppContext from "../context/AppContext.js";
+import NavBarContext from '../context/NavBarContext'
 
 import useStyles from './styles.js'
 import logo from '../../assets/commerce.png';
@@ -9,11 +12,13 @@ import logo from '../../assets/commerce.png';
 const NavBar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
+  const result = useContext(NavBarContext)
   // const history = useHistory()
   // const match = useRouteMatch()
   // const params = useParams()
   // console.log({ location }, { history },
   //   { match }, { params })
+  console.log({ result })
   return (
     <>
        <AppBar position="fixed" className={classes.appBar} color="inherit">
