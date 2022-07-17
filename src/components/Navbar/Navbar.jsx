@@ -1,19 +1,17 @@
 import { useContext } from "react";
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from "@mui/material"
+import { AppBar, Toolbar, IconButton, Badge, Typography} from "@mui/material"
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart } from "@mui/icons-material";
 
 import useStyles from './styles.js'
 import logo from '../../assets/commerce.png';
 import AppContext from "../context/AppContext";
-import NavBarContext from "../context/NavBarContext";
 
 
 const NavBar = () => {
   const classes = useStyles();
   const location = useLocation();
-  const { totalItems, handleDrawerToggle } = useContext(AppContext);
-  // const result = useContext(NavBarContext)
+  const { totalItems } = useContext(AppContext);
 
   return (
     <>
