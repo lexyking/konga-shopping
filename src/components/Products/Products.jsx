@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext'
 
 const Products = () => {
   const classes = useStyles()
-  const { products, handleAddToCart } = useContext(AppContext)
+  const { products } = useContext(AppContext)
 
   return (
     <main className={classes.content}>
@@ -15,7 +15,7 @@ const Products = () => {
         {
           products.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-            <Product product={product} onAddToCart={handleAddToCart}/>
+            <Product product={product}/>
             </Grid>
           ))
         }
