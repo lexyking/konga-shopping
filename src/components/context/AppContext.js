@@ -65,7 +65,6 @@ export const AppContextProvider = ({ children }) => {
   useEffect(() => {
     fetchProducts();
     fetchCart();
-    console.log("hello from app context")
   }, [])
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);

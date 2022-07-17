@@ -7,7 +7,6 @@ import useStyles from './styles';
 import AppContext from '../context/AppContext';
 
 const Cart = () => {
-  // console.log({ cart }, cart.line_items?.length)
   const {
     cart,
     handleUpdateCartQty,
@@ -15,8 +14,6 @@ const Cart = () => {
     handleEmptyCart
   } = useContext(AppContext)
   const classes = useStyles();
-
-  // const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => {
     return (
